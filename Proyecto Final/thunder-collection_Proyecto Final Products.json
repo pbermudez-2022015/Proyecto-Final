@@ -1,0 +1,135 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Proyecto Final Products",
+    "dateExported": "2024-02-23T11:24:12.611Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "757d3dee-1055-4436-a836-bf1fc1d8e751",
+            "colId": "d05a3486-fc59-4e5a-8ba1-556f27f86ef2",
+            "containerId": "",
+            "name": "Save",
+            "url": "http://localhost:2656/product/save",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-02-23T07:28:39.490Z",
+            "modified": "2024-02-23T07:53:56.711Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formencoded",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "name",
+                        "value": "PapasFritas"
+                    },
+                    {
+                        "name": "description",
+                        "value": "ricas "
+                    },
+                    {
+                        "name": "cadution",
+                        "value": "15/9/2025"
+                    },
+                    {
+                        "name": "keeper",
+                        "value": "65d83602d95555ae5604557f"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "9f484c5e-f3a3-4776-9c27-a488248105f3",
+            "colId": "d05a3486-fc59-4e5a-8ba1-556f27f86ef2",
+            "containerId": "",
+            "name": "get",
+            "url": "http://localhost:2656/product/get",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-02-23T08:00:24.656Z",
+            "modified": "2024-02-23T08:01:03.419Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "1a98aca3-8529-42fc-a3e3-56b198239cc7",
+            "colId": "d05a3486-fc59-4e5a-8ba1-556f27f86ef2",
+            "containerId": "",
+            "name": "getProduct",
+            "url": "http://localhost:2656/product/getProduct/65d860a9a08ffca8f45e4aeb",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-02-23T08:04:43.535Z",
+            "modified": "2024-02-23T09:09:11.907Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "e065dfe5-7c03-4843-b4b0-029495efd894",
+            "colId": "d05a3486-fc59-4e5a-8ba1-556f27f86ef2",
+            "containerId": "",
+            "name": "UpdateProduct",
+            "url": "http://localhost:2656/product/update/65d860a9a08ffca8f45e4aeb",
+            "method": "PUT",
+            "sortNum": 50000,
+            "created": "2024-02-23T08:09:27.875Z",
+            "modified": "2024-02-23T09:09:16.877Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formencoded",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "name",
+                        "value": "Coco"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "93e90631-c16e-4f29-a9c1-3201ebd69ac0",
+            "colId": "d05a3486-fc59-4e5a-8ba1-556f27f86ef2",
+            "containerId": "",
+            "name": "DeletedProducts",
+            "url": "http://localhost:2656/product/delete/65d860a9a08ffca8f45e4aeb",
+            "method": "DELETE",
+            "sortNum": 60000,
+            "created": "2024-02-23T08:19:46.769Z",
+            "modified": "2024-02-23T09:09:22.121Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "1f01a8c7-d38c-448c-928c-c5ef2f63b243",
+            "colId": "d05a3486-fc59-4e5a-8ba1-556f27f86ef2",
+            "containerId": "",
+            "name": "searchProduct",
+            "url": "http://localhost:2656/product/search",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2024-02-23T08:23:15.460Z",
+            "modified": "2024-02-23T09:09:55.678Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formencoded",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "name",
+                        "value": "PapasFritas"
+                    }
+                ]
+            },
+            "tests": []
+        }
+    ]
+}

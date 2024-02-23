@@ -1,0 +1,180 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Proyecto Final",
+    "dateExported": "2024-02-23T11:24:03.058Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "fa79d17f-2d48-4202-9f55-2509be791963",
+            "colId": "5b6d0456-11c7-4157-95ee-ac68c3835039",
+            "containerId": "",
+            "name": "Registrar",
+            "url": "http://localhost:2656/user/register",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-02-23T06:07:34.232Z",
+            "modified": "2024-02-23T06:12:15.176Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formencoded",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "name",
+                        "value": "holi"
+                    },
+                    {
+                        "name": "surname",
+                        "value": "holi"
+                    },
+                    {
+                        "name": "username",
+                        "value": "Juan"
+                    },
+                    {
+                        "name": "password",
+                        "value": "12345678"
+                    },
+                    {
+                        "name": "email",
+                        "value": "holi@gmail.com"
+                    },
+                    {
+                        "name": "phone",
+                        "value": "12345678"
+                    },
+                    {
+                        "name": "role",
+                        "value": "ADMIN"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "c9657faa-5f1c-4619-9269-72bbc229b918",
+            "colId": "5b6d0456-11c7-4157-95ee-ac68c3835039",
+            "containerId": "",
+            "name": "login",
+            "url": "http://localhost:2656/user/login",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-02-23T06:10:45.998Z",
+            "modified": "2024-02-23T06:12:46.319Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formencoded",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "username",
+                        "value": "Juan"
+                    },
+                    {
+                        "name": "password",
+                        "value": "12345678"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "1fedfecb-2add-445c-a9a9-f4839f3c5fa0",
+            "colId": "5b6d0456-11c7-4157-95ee-ac68c3835039",
+            "containerId": "",
+            "name": "Test",
+            "url": "http://localhost:2656/user/test",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2024-02-23T06:15:21.931Z",
+            "modified": "2024-02-23T06:15:47.063Z",
+            "headers": [
+                {
+                    "name": "token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWQ4MzYwMmQ5NTU1NWFlNTYwNDU1N2YiLCJ1c2VybmFtZSI6Imp1YW4iLCJuYW1lIjoiaG9saSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTcwODY2ODc2NywiZXhwIjoxNzA4Njc5NTY3fQ.yYqcLugu4Uw5Fr9Vl2SLeJbuekrouNlBI5I62kVEby8"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "7ed30746-08be-4a41-bbf5-b14d0e0b0b57",
+            "colId": "5b6d0456-11c7-4157-95ee-ac68c3835039",
+            "containerId": "",
+            "name": "Update",
+            "url": "http://localhost:2656/user/update/65d83602d95555ae5604557f",
+            "method": "PUT",
+            "sortNum": 70000,
+            "created": "2024-02-23T06:17:38.858Z",
+            "modified": "2024-02-23T06:23:26.378Z",
+            "headers": [
+                {
+                    "name": "token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWQ4MzYwMmQ5NTU1NWFlNTYwNDU1N2YiLCJ1c2VybmFtZSI6Imp1YW4iLCJuYW1lIjoiaG9saSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTcwODY2ODc2NywiZXhwIjoxNzA4Njc5NTY3fQ.yYqcLugu4Uw5Fr9Vl2SLeJbuekrouNlBI5I62kVEby8"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "formencoded",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "name",
+                        "value": "Juanchiito"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "c019896a-7e18-41a9-baeb-b01c7e8505c4",
+            "colId": "5b6d0456-11c7-4157-95ee-ac68c3835039",
+            "containerId": "",
+            "name": "delete",
+            "url": "http://localhost:2656/user/delete/65d83602d95555ae5604557f",
+            "method": "GET",
+            "sortNum": 80000,
+            "created": "2024-02-23T06:29:08.672Z",
+            "modified": "2024-02-23T06:29:31.310Z",
+            "headers": [
+                {
+                    "name": "token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWQ4MzYwMmQ5NTU1NWFlNTYwNDU1N2YiLCJ1c2VybmFtZSI6Imp1YW4iLCJuYW1lIjoiaG9saSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTcwODY2ODc2NywiZXhwIjoxNzA4Njc5NTY3fQ.yYqcLugu4Uw5Fr9Vl2SLeJbuekrouNlBI5I62kVEby8"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "6d9fc20b-2dc8-4d19-b719-b32436a94367",
+            "colId": "5b6d0456-11c7-4157-95ee-ac68c3835039",
+            "containerId": "",
+            "name": "get",
+            "url": "http://localhost:2656/user/get",
+            "method": "GET",
+            "sortNum": 90000,
+            "created": "2024-02-23T06:37:05.636Z",
+            "modified": "2024-02-23T06:57:20.126Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "52fa34c1-218d-4d97-80f0-a7399dc35111",
+            "colId": "5b6d0456-11c7-4157-95ee-ac68c3835039",
+            "containerId": "",
+            "name": "getUserId",
+            "url": "http://localhost:2656/user/getUser/65d83602d95555ae5604557f",
+            "method": "GET",
+            "sortNum": 100000,
+            "created": "2024-02-23T06:57:37.111Z",
+            "modified": "2024-02-23T06:57:51.928Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
