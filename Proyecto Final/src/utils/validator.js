@@ -31,17 +31,29 @@ export const checkUpdate = (data, userId) => {
             data.role ||
             data.role == ''
         ) {
-            return false
+            return false;
         }
-        return true
+        return true;
     } else {
-        if (
-            Object.entries(data).length === 0 ||
-            data.keeper ||
-            data.keeper == ''
-        ) {
-            return false
+        // Si se está actualizando un Producto
+        if (data.name ||
+            data.name == '' ||
+            data.description ||
+            data.description == '' ||
+            data.cadution ||
+            data.price ||
+            data.price == '' ||
+            data.stock ||
+            data.stock == '' ||
+            data.categoria) {
+            return true;
         }
-        return true
+        // Si se está actualizando una Categoría
+        if (data.name ||
+            data.description) {
+            return true;
+        }
+        return false;
     }
-}
+};
+

@@ -8,11 +8,11 @@ export const validateJwt = async (req, res, next) => {
         //Obtener la llave de acesso al token
         let secretKey = process.env.SECRET_KEY
         //Obtener el token de los headers
-        let { token } = req.headers
+        let { authorization } = req.headers
         //Verificar si viene el token
-        if (!token) return res.status(401).send({ message: 'Unauthorized' })
+        if (!authorization) return res.status(401).send({ message: 'Unauthorized' })
         //Validar el vid del usuario que envio
-        let { uid } = jwt.verify(token, secretKey)
+        let { uid } = jwt.verify(authorization, secretKey)
         //Validar si aun existe en la DB
         let user = await User.findOne({ _id: uid })
         if (!user) return res.status(404).send({ message: 'User not found - Unauthorizate' })
@@ -23,6 +23,20 @@ export const validateJwt = async (req, res, next) => {
         return res.status(401).send({ message: 'Invalid Token' })
     }
 }
+
+// Middleware para validar el token JWT y obtener al usuario logueado
+export const validateJwtAndUpdateClient = async (req, res, next) => {
+    try {
+        // Llamar al middleware validateJwt para validar el token JWT y obtener al usuario logueado
+        await validateJwt(req, res, async () => {
+            // Llamar a la función para actualizar al usuario logueado (cliente)
+            await updateClient(req, res);
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).send({ message: 'Error updating client' });
+    }
+};
 
 export const isAdmin = async (req, res, next) => {
     try {

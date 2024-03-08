@@ -13,13 +13,22 @@ const productSchema = Schema({
         type: String,
         required: true
     },
-    keeper: {
+    categoria: {
         type: Schema.Types.ObjectId,
-        ref: 'user',
+        ref: 'categoria',
         required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    },
+    stock: {
+        type: Number,
+        required: true,
+        default: 0
     }
 }, {
     versionKey: false
-})
+});
 
 export default model('product', productSchema)

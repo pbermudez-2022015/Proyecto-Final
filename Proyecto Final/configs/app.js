@@ -8,6 +8,7 @@ import { config } from "dotenv"
 import userRoutes from '../src/user/user.routes.js'
 import productRoutes from '../src/product/product.routes.js'
 import categoriaRoutes from '../src/categoria/categoria.routes.js'
+import shoppingRoutes from '../src/shoppingcar/shopping.routes.js'
 
 
 
@@ -24,6 +25,8 @@ app.use(helmet()) //Aplica capa de seguridad básica al servidor
 app.use(morgan('dev')) //Logs de solicitudes al servidor HTTP
 
 //Declaración de rutas
+
+app.use('/shopping', shoppingRoutes)
 app.use('/user', userRoutes)
 app.use('/product', productRoutes)
 app.use('/categoria', categoriaRoutes)

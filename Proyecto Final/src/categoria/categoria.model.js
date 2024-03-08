@@ -5,11 +5,11 @@ const categoriaSchema = Schema({
         type: String,
         required: true
     },
-    keeper: {
-        type: Schema.Types.ObjectId,
-        ref: 'product',
+    description: {
+        type: String,
         required: true
     }
+
 }, {
     versionKey: false
 })
