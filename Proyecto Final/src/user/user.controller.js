@@ -10,17 +10,39 @@ export const test = (req, res) => {
     return res.send({ message: 'Test is running' })
 }
 
-//Empieza el crud completo con rol de: ADMIN.
+
+export const createDefaultAdmin = async () => {
+    try {
+        const existingAdmin = await User.findOne({ role: 'ADMIN' });
+        if (!existingAdmin) {
+            const hashedPassword = await encrypt('password');
+            const defaultAdmin = new User({
+                name: 'Admin',
+                surname: 'Admin',
+                username: 'admin',
+                password: hashedPassword,
+                email: 'admin@example.com',
+                phone: '12345678',
+                role: 'ADMIN'
+            });
+            await defaultAdmin.save();
+            console.log('Se creó el administrador por defecto.');
+        } else {
+            console.log('Ya existe un administrador en la base de datos.');
+        }
+    } catch (error) {
+        console.error('Error al crear el administrador por defecto:', error);
+    }
+}
+
+
 
 //ADMIN por defecto, para realizar validacion de funciones
 export const createAdmin = async (req, res) => {
     try {
-        // Verificar si ya existe un usuario administrador
         const adminExists = await User.exists({ role: 'ADMIN' });
-        // Si no existe, crea un nuevo administrador
         if (!adminExists) {
-            // Encriptar la contraseña utilizando la funcion encrypt
-            const newPassword = await encrypt('12345678'); //el valor segun la contrase;a que desees encriptar
+            const newPassword = await encrypt('12345678');
             const adminData = {
                 name: 'Admin',
                 surname: 'Admin',
@@ -48,6 +70,11 @@ export const registerAd = async (req, res) => {
         if (req.user.role !== 'ADMIN') {
             return res.status(401).send({ message: 'Unauthorized, Only admins can register new users.' });
         }
+        const { email } = req.body;
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).send({ message: 'Email already exists' });
+        }
         let data = req.body;
         data.password = await encrypt(data.password);
         let user = new User(data);
@@ -62,23 +89,32 @@ export const registerAd = async (req, res) => {
 //register publico coloca por defecto rol CLIENT
 export const registerClient = async (req, res) => {
     try {
-        let data = req.body
-        data.password = await encrypt(data.password)
-        data.rol = 'CLIENT'
-        let user = new User(data)
-        await user.save()
-        return res.send({ message: `Registered successfully, can be logged with username ${user.username}` })
+        const { email } = req.body;
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).send({ message: 'Email already exists' });
+        }
+        let data = req.body;
+        data.password = await encrypt(data.password);
+        data.role = 'CLIENT';
+        let user = new User(data);
+        await user.save();
+        return res.send({ message: `Registered successfully, can be logged with username ${user.username}` });
     } catch (err) {
-        console.error(err)
-        return res.status(500).send({ message: 'Error registering user', err: err })
+        console.error(err);
+        return res.status(500).send({ message: 'Error registering user', err: err });
     }
-}
+};
+
 
 /*Puede logearse si coinciden los datos, tanto admin como del client*/
 export const login = async (req, res) => {
     try {
         const { identifier, password } = req.body;
-        let user = await User.findOne({ $or: [{ email: identifier }, { username: identifier }] });
+        let user = await User.findOne({
+            $or: [{ email: identifier },
+            { username: identifier }]
+        });
         if (user && await checkPassword(password, user.password)) {
             let loggedUser = {
                 uid: user._id,
@@ -200,6 +236,9 @@ export const searchCli = async (req, res) => {
 // obtener dato por id del usuario
 export const getUser = async (req, res) => {
     try {
+        if (req.user.role !== 'ADMIN') {
+            return res.status(401).send({ message: 'Unauthorized, Only clients can delete their own account.' });
+        }
         let { id } = req.params;
         let user = await User.findById(id);
         if (!user) {

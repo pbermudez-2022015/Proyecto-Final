@@ -35,8 +35,9 @@ export const checkUpdate = (data, userId) => {
         }
         return true;
     } else {
-        // Si se está actualizando un Producto
-        if (data.name ||
+        if (data.email ||
+            data.email == '' ||
+            data.name ||
             data.name == '' ||
             data.description ||
             data.description == '' ||
@@ -45,14 +46,14 @@ export const checkUpdate = (data, userId) => {
             data.price == '' ||
             data.stock ||
             data.stock == '' ||
+            data.quantity ||
+            data.quantity == '' ||
+            data.subtotal ||
+            data.subtotal == '' ||
             data.categoria) {
             return true;
         }
         // Si se está actualizando una Categoría
-        if (data.name ||
-            data.description) {
-            return true;
-        }
         return false;
     }
 };

@@ -75,7 +75,7 @@ export const generatePDFInvoice = async (req, res) => {
         }
         // Crea un nuevo documento PDF
         const doc = new PDFDocument();
-        const filePath = `invoice_${invoiceId}.pdf`;
+        const filePath = `invoice${invoiceId}.pdf`;
         doc.pipe(fs.createWriteStream(filePath));
         // Escribe el contenido en el PDF
         doc.fontSize(20).text('Invoice', { align: 'center' }).moveDown();
@@ -102,7 +102,7 @@ export const generatePDFInvoice = async (req, res) => {
         fs.unlinkSync(filePath);
     } catch (error) {
         console.error(error);
-        return res.status(500).send({ message: 'Error generating PDF invoice' });
+        return res.status(500).send({ message: 'generating PDF invoice' });
     }
 };
 
@@ -115,7 +115,6 @@ export const updateInvoice = async (req, res) => {
         const { invoiceId } = req.params;
         const updatedInvoice = req.body;
         const updated = await Invoice.findByIdAndUpdate(invoiceId, updatedInvoice, { new: true });
-
         if (!updated) {
             return res.status(404).json({ message: 'Invoice not found' });
         }
@@ -124,7 +123,6 @@ export const updateInvoice = async (req, res) => {
             if (!product) {
                 return res.status(404).json({ message: `Product with ID ${item.product._id} not found` });
             }
-            product.stock = item.quantity;
             await product.save();
         }
         return res.status(200).json({ message: 'Invoice updated successfully', updatedInvoice: updated });

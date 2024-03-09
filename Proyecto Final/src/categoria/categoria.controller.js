@@ -82,11 +82,8 @@ export const update = async (req, res) => {
 
 
 //default categoria
-export const defaultCategoria = async (req, res) => {
+export const defaultCategoria = async () => {
     try {
-        if (req.user.role !== 'ADMIN') {
-            return res.status(401).send({ message: 'Unauthorized, Only admins can initialize default category.' });
-        }
         const defaultCategoria = await Categoria.findOne({ name: 'Default' });
         if (!defaultCategoria) {
             const newDefaultCategoria = new Categoria({
@@ -95,16 +92,17 @@ export const defaultCategoria = async (req, res) => {
             });
             await newDefaultCategoria.save();
             console.log('Default Categoria created successfully');
-            return res.send({ message: 'Default Categoria created successfully' });
         } else {
             console.log('Default Categoria already exists');
-            return res.send({ message: 'Default Categoria already exists' });
         }
     } catch (error) {
         console.error('Error initializing Default Categoria:', error);
-        return res.status(500).send({ message: 'Error initializing Default Categoria' });
+        // Si lo deseas, podrías lanzar el error o realizar otra acción aquí
     }
 };
+
+
+
 
 //Eliminar Categoria
 export const deleteC = async (req, res) => {

@@ -35,6 +35,9 @@ export const save = async (req, res) => {
 //mostrar en todos
 export const get = async (req, res) => {
     try {
+        if (req.user.role !== 'ADMIN') {
+            return res.status(401).send({ message: 'Unauthorized, Only admins get products.' });
+        }
         let product = await Product.find().populate({ path: 'categoria', select: 'name -_id name description' });
         return res.send({ product });
     } catch (err) {
@@ -51,7 +54,7 @@ export const getProduct = async (req, res) => {
         let { id } = req.params;
         let product = await Product.findById(id);
         if (!product) {
-            return res.status(404).send({ message: 'User not found' });
+            return res.status(404).send({ message: 'Producto not found' });
         }
         return res.send({ product });
     } catch (err) {
@@ -138,7 +141,6 @@ export const searchClient = async (req, res) => {
     try {
         const { name, outOfStock, topSelling, categoriName } = req.body;
         let query = {};
-        // Agregar la búsqueda por nombre de categoría
         if (categoriName) {
             const categoria = await Categoria.findOne({ name: categoriName });
             if (!categoria) {
@@ -147,7 +149,7 @@ export const searchClient = async (req, res) => {
             query.categoria = categoria._id;
         }
         if (name) {
-            query.name = name;
+            query.name = { $regex: name, $options: 'i' }; // 'i' para hacer la búsqueda insensible a mayúsculas y minúsculas
         }
         if (outOfStock) {
             query.stock = 0;
